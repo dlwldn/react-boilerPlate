@@ -76,7 +76,7 @@ app.post("/api/users/login", (req, res) => {
   });
 });
 
-app.get("api/users/auth", auth, (req, res) => {
+app.get("/api/users/auth", auth, (req, res) => {
   //여기까지 미들웨어가 통과했다는 것은 Authentication이 True라는 뜻
   res.status(200).json({
     _id: req.user._id,
@@ -90,6 +90,10 @@ app.get("api/users/auth", auth, (req, res) => {
     image: req.user.image
   });
 });
+
+
+
+
 
 app.get("/api/users/logout", auth, (req, res) => {
   User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
